@@ -330,10 +330,10 @@ void JNI::LoadEmbeddedClassloader(JNIEnv* env)
 
 	// Now link in native methods
 	JNINativeMethod m[2];
-	m[0].fnPtr = ListJars;
+	m[0].fnPtr = (void*) ListJars;
 	m[0].name = "listJars";
 	m[0].signature = "(Ljava/lang/String;)[Ljava/lang/String;";
-	m[1].fnPtr = GetJar;
+	m[1].fnPtr = (void*) GetJar;
 	m[1].name = "getJar";
 	m[1].signature = "(Ljava/lang/String;Ljava/lang/String;)Ljava/nio/ByteBuffer;";
 	env->RegisterNatives(g_classLoaderClass, m, 2);

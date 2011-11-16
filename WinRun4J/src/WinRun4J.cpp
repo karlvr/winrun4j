@@ -14,7 +14,9 @@
 #include "launcher/DDE.h"
 #include "launcher/Service.h"
 #include "launcher/EventLog.h"
+#if WINRUN4J_NATIVE
 #include "launcher/Native.h"
+#endif
 #include "common/Registry.h"
 
 #define CONSOLE_TITLE                       ":console.title"
@@ -309,7 +311,9 @@ int WinRun4J::ExecuteINI(HINSTANCE hInstance, dictionary* ini, LPSTR lpCmdLine)
 
 	// Register native methods
 	JNI::Init(env);
+#if WINRUN4J_NATIVE
 	Native::RegisterNatives(env);
+#endif
 
 	// Startup DDE if requested
 	bool ddeInit = DDE::Initialize(hInstance, env, ini);
@@ -383,12 +387,14 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR lp
 	// Initialise the logger using std streams
 	Log::Init(hInstance, NULL, NULL, NULL);
 
+#if WINRUN4J_ALLOW_BUILTIN_COMMANDS
 	// Check for Builtin commands
 	if(IsBuiltInCommand(lpCmdLine)) {
 		int res = WinRun4J::DoBuiltInCommand(hInstance, lpCmdLine);
 		Log::Close();
 		return res;
 	}
+#endif
 
 	// Load the INI file based on module name
 	dictionary* ini = WinRun4J::LoadIniFile(hInstance);

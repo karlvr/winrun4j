@@ -25,6 +25,9 @@
 #include "java/VM.h"
 #include "java/Classpath.h"
 
+#define WINRUN4J_NATIVE 0
+#define WINRUN4J_ALLOW_BUILTIN_COMMANDS 0
+
 class WinRun4J
 {
 public:
