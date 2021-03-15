@@ -372,11 +372,11 @@ int __stdcall WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR lp
 	ParseCommandLine(lpCmdLine, progargs, progargsCount, true);
 
 	// Check for Builtin commands
-	if(progargsCount && strncmp(progargs[0], "--WinRun4J:", 11) == 0) {
-		int res = WinRun4J::DoBuiltInCommand(hInstance);
-		Log::Close();
-		return res;
-	}
+	// if(progargsCount && strncmp(progargs[0], "--WinRun4J:", 11) == 0) {
+	// 	int res = WinRun4J::DoBuiltInCommand(hInstance);
+	// 	Log::Close();
+	// 	return res;
+	// }
 
 	// Load the INI file based on module name
 	dictionary* ini = WinRun4J::LoadIniFile(hInstance);
