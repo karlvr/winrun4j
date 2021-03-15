@@ -330,10 +330,12 @@ extern "C" char * _cdecl strdup(const char *str)
     return strcpy (r, str);
 }
 
+#if 0
 extern "C" char * _cdecl _strdup(const char *src)
 {
 	return strdup(src);
 }
+#endif
 
 extern "C" void __cdecl _wassert(int e)
 {
